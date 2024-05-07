@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var texto = $('.texto-progresivo').text();
+            var palabras = texto.split(' ');
+            $('.texto-progresivo').empty();
+            $.each(palabras, function(i, palabra) {
+                var span = $('<span>').text(palabra + ' ').css('opacity', 0);
+                $('.texto-progresivo').append(span);
+                span.delay(250 * i).animate({opacity: 1}, 1000);
+            });
+        });
+    </script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='/css/BaseStyle.css') }}"> 
+    <style>
+      
+        .grid-container {
+            display: grid;
+            grid-template-columns: minmax(50px, 165px) minmax(15px,auto) ;
+            gap: 5px;
+        }
+        .columna-uno {
+            background-color: #f2f2cb;
+        }
+        .columna-dos {
+            background-color: peru;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="columna-uno">Columna Uno
+          <div id="BarraLateral">
+            <aside>
+             <div id="TITULO">
+                <a href="{{ url_for('home') }}"> <h3> CarpyAcademy </h3> </a>
+                <div class="logo">
+                  <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+                  {%if  nombre == "logueando" %}
+                  {% block FormularioLogin %}{% endblock %}
+                  {% elif nombre =="registrando" %}
+                  {% block FormularioRegistarse %}{% endblock %}
+                 
+                  {% elif nombre !="identifiquese :)" %}
+                  <div class="MensajeBienvenida"><h1>Hola, {{ nombre }}</h1></div>
+                  <button class="botonLogout" onclick="location.href='{{ url_for('logout') }}'">Salir</button>
+                 
+                {% else  %}
+                <div class="MensajeBienvenida"><h1>Hola, {{ nombre }}</h1></div>
+              
+                  <div class="boton">
+                   <button class="botonRegistar" onclick="location.href='{{ url_for('login') }}'">Ingresar</button>
+                   <button class="botonIngresar" onclick="location.href='{{ url_for('register') }}'">Registrarme</button>
+                   
+                </div>
+            </a>
+            </div>    
+                {% endif %}     
+     </aside>
+         </div>
+        </div>
+        
+        <div class="columna-dos">
+          
+          <div class="navbar">
+            <div></div>
+            <a href="{{ url_for('home') }}">🏠 Inicio</a>
+            <a href="{{ url_for('cursos') }}">📚 Cursos</a>
+            <a href="{{ url_for('about') }}">🔍 Sobre nosotros</a>
+            <a href="{{ url_for('contacto') }}">✉️ Contacto</a>
+        </div>
+        <div class="MatrizPrincipal">
+          <div>      
+            {% if request.path == '/' %}
+            <div class="Avisos"> 
+                <div class="Taviso">Avisos:</div>  
+                <div class="texto-progresivo">Esta página se encuentra en construcción; en caso de encontrar un bug por favor reportelo.</div>
+            </div>
+            {% block cursos %}  
+            {% endblock %}
+        {% elif request.path == '/cursos' %}
+               {% block cursosencursos %}
+              {% block TituloCursos %}
+              {% endblock %}
+              {{ self.cursos() }}
+              {% endblock %}
+        {% elif request.path == '/register' %}
+              {% block RegisterBody %}
+              {% endblock %}  
+        {% endif %}
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+{% extends './Base.html' %}
+
+{% block title %}♔Partidas♚{% endblock %}
+
+<style>
+ 
+</style>
+
+
+{% block AulaCurso %}
+<div id="titulocurso">
+<h3><i>---Resumen de las partidas:---</i></h3>
+</div>
+<div class="Aula">
+
+    {% if ClasesDelCurso|length != 0 %}
+    {% for item in ClasesDelCurso %}
+    
+    <div class="nota"> 
+        {% if loop.index0 == 0 %}
+            {% for clave, valor in Aula0.items() %}
+            <ul> <li>
+                <a href="{{ valor }}">{{ clave }}</a>
+            </li>
+            </ul>
+            {% endfor %}
+        {% endif %}
+        {% if loop.index0 == 1 %}
+            {% for clave, valor in Aula1.items() %}
+            <ul> <li>
+                <a href="{{ valor }}">{{ clave }}</a>
+            </li>
+            </ul>
+            {% endfor %}
+        {% endif %}
+        {% if loop.index0 == 2 %}
+            {% for clave, valor in Aula2.items() %}
+            <ul> <li>
+                <a href="{{ valor }}">{{ clave }}</a>
+            </li>
+            </ul>
+            {% endfor %}
+        {% endif %}
+        {% if loop.index0 == 3 %}
+            {% for clave, valor in Aula3.items() %}
+            <ul> <li>
+                <a href="{{ valor }}">{{ clave }}</a>
+            </li>
+            </ul>
+            {% endfor %}
+        {% endif %}
+        {% if loop.index0 == 4 %}
+            {% for clave, valor in Aula4.items() %}
+            <ul> <li>
+                <a href="{{ valor }}">{{ clave }}</a>
+            </li>
+            </ul>
+            {% endfor %}
+        {% endif %}
+        {% if loop.index0 == 5 %}
+            {% for clave, valor in Aula5.items() %}
+            <ul> <li>
+                <a href="{{ valor }}">{{ clave }}</a>
+            </li>
+            </ul>
+            {% endfor %}
+        {% endif %}
+        {% if loop.index0 == 6 %}
+            {% for clave, valor in Aula6.items() %}
+            <ul> <li>
+                <a href="{{ valor }}">{{ clave }}</a>
+            </li>
+            </ul>
+            {% endfor %}
+        {% endif %}
+        {% if loop.index0 == 7 %}
+            {% for clave, valor in Aula7.items() %}
+            <ul> <li>
+                <a href="{{ valor }}">{{ clave }}</a>
+            </li>
+            </ul>
+            {% endfor %}
+        {% endif %}
+        {% if loop.index0 == 8 %}
+            {% for clave, valor in Aula8.items() %}
+            <ul> <li>
+                <a href="{{ valor }}">{{ clave }}</a>
+            </li>
+            </ul>
+            {% endfor %}
+        {% endif %}
+        {% if loop.index0 == 9 %}
+            {% for clave, valor in Aula9.items() %}
+            <ul> <li>
+                <a href="{{ valor }}">{{ clave }}</a>
+            </li>
+            </ul>
+            {% endfor %}
+        {% endif %}
+        {% if loop.index0 == 10 %}
+            {% for clave, valor in Aula10.items() %}
+            <ul> <li>
+                <a href="{{ valor }}">{{ clave }}</a>
+            </li>
+            </ul>
+            {% endfor %}
+        {% endif %}
+        {% if loop.index0 == 10 %}
+            {% for clave, valor in Aula5.items() %}
+            <ul> <li>
+                <a href="{{ valor }}">{{ clave }}</a>
+            </li>
+            </ul>
+            {% endfor %}
+        {% endif %}
+        <div class="nota-content">
+            <p> {{ item }}</p>
+        </div>
+    </div>
+</article>
+    {% endfor %}   
+{% endif %}
+
+</div>
+</div>
+{% endblock %}

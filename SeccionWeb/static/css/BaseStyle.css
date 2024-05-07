@@ -1,0 +1,355 @@
+/*Estos son los estilos predeterminados, que se aplican como base y se heredan al resto de templates*/
+
+.grid-container {
+  display: grid;
+  grid-template-columns: minmax(100px, 165px) minmax(15px,auto) ;
+  gap: 5px;
+}
+.columna-uno {
+  background-color: #f2f2cb;
+  width: 300px;
+
+}
+.columna-dos {
+  background-color:  rgb(5, 123, 156);
+}
+.MatrizPrincipal {
+  display: grid;
+  
+  grid-template-rows: 1fr;
+  gap: 5px 10px;
+;
+}
+.Cursos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+  margin-left: 75px;
+  margin-right: 75px;
+  margin-top: 15px;
+}
+.Titulo {
+  display: grid;
+  grid-template-columns:  1fr 1fr 1fr;
+  gap: 10px;
+  margin-top: -45px;
+  margin-left: 20px 
+}
+@keyframes reveal {
+  from { width: 0; }
+  to { width: 100%; }
+}
+body {
+    font-family: Verdana,Arial;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(5, 123, 156); /* Para  mi este es color carpincho*/
+  }
+  aside  /*barra lateral*/ {
+    background-color: #f2f2cb; /* Blanco mantecoso */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 165px; /* Ancho del aside */
+    height: 100%; /* Altura del aside */
+    padding: 20px;
+    display: grid; 
+    grid-auto-flow: row; /* Orientación vertical */
+    align-items: start; /* Centrar los elementos verticalmente */
+}
+
+.logo img {
+  width: 90%; /* Achica la imagen */
+  justify-content: top;
+  position: relative;
+    
+
+}
+.Taviso {
+
+  margin-left: 10px;
+  font-family: monospace;
+}
+.Avisos {
+  overflow: hidden;
+  background-image: url('./static/paper.PNG');
+  background-repeat: repeat;
+  align-items: center;
+  background-size: cover;
+  display: grid;
+  gap: 20px;
+  grid-template-columns:  1fr 1fr 1fr ;
+  list-style-type: none; /* Quita los puntos */
+  margin-left: 45px;
+  margin-top: 15px;
+  font-family: monospace;
+}
+
+.navbar {
+  overflow: hidden;
+  background-image: url('./static/FondoNavegacion.png');
+  background-repeat: repeat;
+  background-size: cover;
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 20px auto auto auto auto auto;
+  list-style-type: none; /* Quita los puntos */
+}
+
+.navbar a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  margin-bottom: 20px;
+  border: 2px black
+}
+
+.navbar a:hover {
+  background-color: rgba(4, 219, 212, 0.834);
+}
+
+
+
+ 
+
+.boton {
+  order: 1; /* Los botones aparecen primero */
+  display: grid;
+  width: 50%;
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 20px;
+  border-radius: 6px;
+  gap: 10px;
+  }
+  #Cabeza {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+
+  }
+  
+    img {
+    width: 75%;
+    }
+
+   
+      
+  
+    
+    
+  .footer {
+  display: grid;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 100vh;
+  padding: 0 20px 20px 0;
+  }
+  
+  @keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+  }
+
+
+.img {
+width: 100%;
+}
+.tarjeta {
+  margin-left: 10px;
+  gap: 10px 10px;
+  width: 300px;
+  height: 200px;
+  position: relative;
+  perspective: 1000px;
+  display: grid;
+  
+  
+}
+.tarjeta-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+ 
+}
+.tarjeta:hover .tarjeta-inner {
+  transform: rotateY(180deg);
+}
+.tarjeta-front, .tarjeta-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  font-size: small;
+  box-shadow: 0 4px 8px 0 rgba(127, 125, 125, 0.669);
+}
+.tarjeta-front {
+  background-size: cover;
+  border-radius: 5%
+}
+.tarjeta-back {
+  background: #F5F5DC;
+  transform: rotateY(180deg);
+  display: grid;
+  grid-template-rows:  1fr 1fr ;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 5%
+}
+.imagen-uno {
+  background-image: url('./static/InglesA1.png');
+}
+.imagen-dos {
+  background-image: url('./static/CursoTortasFritas.png');
+}
+.imagen-tres {
+  background-image: url('./static/ModeloVistaControlador.jpg');
+}
+.imagen-cuatro {
+  background-image: url('./static/proximamente.png');
+}
+/*ETC */
+
+.ImagenCirculada {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 5px;
+  margin-left: 100px;
+  margin-top: 15px;
+ 
+}
+.ImagenCirculada img {
+  width: 80%;
+  height: 60%;
+  border-radius: 5%;
+}
+.Renglon{
+  display: grid;
+  grid-template-rows: 1 fr 1fr 1fr;
+  gap: 10px;
+  margin-left: 45px;
+  margin-top: 15px;
+}
+.Aula {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 12.5px;
+  margin-left: 45px;
+  margin-top: 15px;
+ 
+}
+.alert.alert-warning {
+  background-color: #b71c1c; /* rojo mate */
+  color: white; /* letras en blanco */
+  border-radius: 0; /* cuadrado */
+}
+.nota {
+  position: relative;
+  width: 200px;
+  height: 300px;
+  background-color: #add8e6;
+  border-radius: 18px;
+  box-shadow: 0px 10px 30px rgba(5, 93, 168, 0.72);
+  padding: 20px;
+  overflow: hidden;
+  margin-left: 18px;
+}
+
+.nota-content {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #87cefa;
+  transition: transform 0.35s ease-in-out;
+}
+
+.nota:hover .nota-content {
+  transform: translateY(-100%);
+  animation: MoverArriba 1s ease-in-out forwards;
+}
+#titulocurso{
+  text-shadow: 2px 2px #FF0000; /*Sombrita fachera*/
+  display: flex;
+  padding-left: 54px;
+  justify-content: center; /*Centramos*/
+  align-items: center;
+  background-image: url('./static/pizzarra.png');
+}
+
+  .BotonesCurso {
+    display: grid;
+    vertical-align: top;
+    width:   minmax(400px, 1fr);
+    height: 300px;
+    background-color: #6da7e2;
+    border-radius: 18px;
+    box-shadow: 0px 10px 30px rgba(22, 22, 23, 0.72);
+    padding: 20px;
+    margin-left: 18px;
+    margin-bottom: 18px;  
+    position: relative;
+    transition: transform 0.5s;
+  }
+  .examen {
+    display: grid;
+    vertical-align: top;
+    width:   minmax(400px, 1fr);
+    height: auto;
+    background-color: #6da7e2;
+    box-shadow: 0px 10px 30px rgba(22, 22, 23, 0.72);
+    padding: 20px;
+    margin-left: 54px;
+    margin-right: 6px;  
+    position: relative;
+    transition: transform 0.5s;
+  }
+  .checkbox-right {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  
+  
+@keyframes MoverArriba {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
+}
+ 
+
+@media screen and (max-width: 700px)  {
+  .logo {
+    max-width: 63%;
+  }
+  .Titulo{max-width: 55%;
+  margin-right: 99px;
+  aside  /*barra lateral*/ {
+    background-color: #f2f2cb; /* Blanco mantecoso */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px; /* Ancho del aside */
+    height: 2000%; /* Es exagerada, pero resuelve un bug*/
+    padding: 20px;
+    display: grid; 
+    flex-direction: column; /* Orientación vertical */
+    justify-content: top; /* Centrar los elementos verticalmente */
+}
+}/*Vista en modo retrato, para algunos celulares*/
+
+@media screen and (device-width: 360px) and (device-height: 640px) {
+  .logo {
+    max-width: 55%;
+  }
+  .aside {max-width: 55%}
+} 
+
