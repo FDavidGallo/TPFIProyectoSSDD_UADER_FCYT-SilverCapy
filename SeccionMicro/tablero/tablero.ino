@@ -1,77 +1,56 @@
-
-
-const char* ssid = "WiFi_Fibertel_nct_2.4GHz"; // Cambia por el nombre de tu red WiFi
-const char* password = "jxrgr24b22"; // Cambia por la contraseña de tu red Wia
-
-// Crea un objeto de servidor web
- 
 #include <WiFi.h>
-#include <ESPAsyncWebSrv.h>
+#include <MySQL_Connection.h>
+#include <MySQL_Cursor.h>
 
-// Cambia estos valores con la información de tu red Wi-Fi
-//const char* ssid = "NOMBRE_WIFI";
-//const char* password = "CLAVE_WIFI";
-
-// Pin del LED
-const int ledPin = 26;
-
-
-// Crea una instancia del servidor web
-AsyncWebServer server(80);
+// Configura tus credenciales WiFi y MySQL
+char* ssid = "WiFi_Fibertel_nct_2.4GHz"; // Cambia por el nombre de tu red WiF
+ char* password = "jxrgr24b22"; // Cambia por la contraseña de tu red Wia
+  char* host = "192.168.1.12"; // Dirección IP de tu servidor MySQL
+ char* user = "micro";
+ char* pass = "root";
+ char* database = "eso"; // Asegúrate de definir correctamente esta variable
+WiFiClient client;
+MySQL_Connection conn((Client*)&client);
 
 void setup() {
   Serial.begin(9600);
-
-
-  // Inicializa el pin del LED como salida
-  pinMode(ledPin, OUTPUT);
-  digitalWrite(ledPin, LOW);
-
-  // Conéctate a la red Wi-Fi
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(1000);
-    Serial.println("Conectando a Wi-Fi...");
+    Serial.println("Conectando a WiFi...");
   }
-  Serial.println("Conexión exitosa");
+  Serial.println("Conexión WiFi establecida");
 
-  // Imprime la dirección IP asignada al Arduino
-  Serial.print("Dirección IP: ");
-  Serial.println(WiFi.localIP());
-
-  // Configura la página principal
-  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
-    String htmlContent = "<html><body>";
-    htmlContent += "<h1>Control de LED</h1>";
-    htmlContent += "<button onclick=\"sendRequest('/on');\">Encender</button>";
-    htmlContent += "<button onclick=\"sendRequest('/off');\">Apagar</button>";
-    htmlContent += "<script>function sendRequest(url) {";
-    htmlContent += "var xhr = new XMLHttpRequest();";
-    htmlContent += "xhr.open('GET', url, true);";
-    htmlContent += "xhr.send();";
-    htmlContent += "}</script>";
-    htmlContent += "</body></html>";
-    request->send(200, "text/html", htmlContent);
-  });
-
-  // Manejador para encender el LED
-  server.on("/on", HTTP_GET, [](AsyncWebServerRequest *request) {
-    digitalWrite(ledPin, HIGH);
-    request->send(200, "text/plain", "LED encendido");
-  });
-
-  // Manejador para apagar el LED
-  server.on("/off", HTTP_GET, [](AsyncWebServerRequest *request) {
-    digitalWrite(ledPin, LOW);
-    request->send(200, "text/plain", "LED apagado");
-  });
-
-  // Inicia el servidor
-  server.begin();
+     IPAddress serverIP;
+      Serial.println("INTENTANDO");
+      if (WiFi.status() == WL_CONNECTED) {
+  Serial.println("WiFi connected");
+} else {
+  Serial.println("WiFi connection failed");
 }
 
-void loop() {
-   analogReadResolution(10);       // Resolución de 10 bits
-    analogSetAttenuation(ADC_11db); // Tensión de referencia de 3.3V
+if (conn.connect(serverIP, 3306, user, pass, database)) {
+  Serial.println("Connected to MySQL server");
+} else {
+  Serial.println("Failed to connect to MySQL server");
+}
+
+  if (serverIP.fromString(host)) {
+    if (conn.connect(serverIP, 3306, user, pass, database)) {
+      Serial.println("Conexión a MySQL exitosa");
+      // Aquí puedes ejecutar consultas o realizar otras operaciones con la base de datos
+      conn.close();
+    } else {
+      Serial.println("Error al conectar a MySQL");
+    }
+  } else {
+    Serial.println("Dirección IP inválida");
+  }
   
+}
+
+
+
+void loop() {
+  // Tu código aquí
 }
