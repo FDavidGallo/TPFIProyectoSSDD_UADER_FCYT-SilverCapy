@@ -3,8 +3,8 @@
 #include <MySQL_Cursor.h>
 
 // Configura tus credenciales WiFi y MySQL
-char* ssid = "WiFi_Fibertel_nct_2.4GHz"; // Cambia por el nombre de tu red WiF
- char* password = "jxrgr24b22"; // Cambia por la contraseña de tu red Wia
+const char* ssid = "Alumnos2.4GHz";
+const char* password = "alumnosfcyt";
   char* host = "192.168.1.12"; // Dirección IP de tu servidor MySQL
  char* user = "micro";
  char* pass = "root";
