@@ -49,6 +49,8 @@
             <a href="{{ url_for('contacto') }}">✉️ Contacto</a>
         </div>
         <div class="MatrizPrincipal">
+          {% block Bodyy %}
+          {% endblock %}
           <!--Esta sección varía según la ruta que se visite-->      
           {% if request.path == '/' %}
               <div class="Avisos"> 

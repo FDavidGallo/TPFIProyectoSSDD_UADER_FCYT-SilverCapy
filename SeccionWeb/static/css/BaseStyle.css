@@ -324,7 +324,50 @@ width: 100%;
   0% { transform: translateY(0); }
   100% { transform: translateY(-100%); }
 }
- 
+.TablaDelinks {
+  display: grid;
+  grid-template-columns: repeat(3, 2fr);
+  gap: 26px;
+  border-collapse: separate;
+  border-spacing: 10px;
+  margin-left: 100px;
+  text-decoration: none;
+}
+.TablaDelinks th {
+  background-color: #f9f9f9;
+  font-weight: bold;
+}
+.TablaDelinks p {
+  text-decoration: none; /* Quita la decoración de enlace */
+  color: #1e90ff; /* Color azul oscuro */
+}
+
+.TablaFachera {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  border-collapse: separate;
+  border-spacing: 10px;
+  margin-left: 100px;
+}
+
+.TablaFachera th,
+.TablaFachera td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid gold;
+  border-radius: 10px;
+}
+
+.TablaFachera th {
+  background-color: #f9f9f9;
+  font-weight: bold;
+}
+
+.TablaFachera td {
+  background-color: #ffffff;
+  font-family: Arial, sans-serif;
+} 
 
 @media screen and (max-width: 700px)  {
   .logo {

@@ -1,11 +1,13 @@
+#include <ArduinoJson.h>
+#include <Arduino.h>
+#include <secrets.h>
 #include <WiFi.h>
 #include <HTTPClient.h>
-#include <ArduinoJson.h>
 
-const char* ssid = "Alumnos2.4GHz";
-const char* password = "alumnosfcyt";
-const char* serverAddress = "http://172.21.0.205:5000/data"; // Cambia la dirección IP con la de tu PC
 
+ //const char* ssid = "Alumnos2.4GHz";
+ //const char* password = "alumnosfcyt";
+ //const char* serverAddress = "http://172.21.0.205:5000/data";
 void setup() {
     Serial.begin(9600);
     WiFi.begin(ssid, password);
@@ -22,14 +24,14 @@ void loop() {
     float gasto = 123.45; // Valor simulado de gasto
     float presion = 67.89; // Valor simulado de presión
     float vibracion = 12.12; // Valor simulado de vibración
-
-    DynamicJsonDocument jsonDoc(200);
+/*
+    //DynamicJsonDocument jsonDoc(200);
     jsonDoc["gasto"] = gasto;
     jsonDoc["presion"] = presion;
     jsonDoc["vibracion"] = vibracion;
 
     String payload;
-    serializeJson(jsonDoc, payload);
+    //serializeJson(jsonDoc, payload);
 
     HTTPClient http;
     delay(5000); // Espera 5 segundos antes de conectar
@@ -48,6 +50,6 @@ void loop() {
         Serial.printf("HTTP Request failed: %s\n", http.errorToString(httpResponseCode).c_str());
     }
     http.end();
-
+*/
     delay(5000); // Espera 5 segundos antes de enviar el siguiente dato
 }
