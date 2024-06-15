@@ -19,14 +19,41 @@ app = Flask(__name__) #instanciamos nuestro objeto Flask
 # Configuración de la base de datos
 db = mysql.connector.connect(
     host="localhost",
-    user="root",
-    password="root",
+    user="root",  #Cambia Esto según tu usuario y contraseña
+    password="root", # de Mysql
     database="AppMicro",
     consume_results=True
 )
-data = {'gasto': [], 'presion': [], 'vibracion': []}
+data = {'Movimiento': [], 'ReyBlanco': [], 'ReyNegro': [],'NumeroDeMovimiento':[],}
+def EnviarAMysql(Dato1, Dato2, Dato3,Dato4, TablaDestino):
+    try:
+        cursor = db.cursor()
+        query = f"INSERT INTO {TablaDestino} (Movimiento, ReyBlanco, ReyNegro,NumeroDeMovimiento) VALUES (%s, %s, %s, %s)"
+        values = (Dato1, Dato2, Dato3,Dato4)
+        cursor.execute(query, values)
+        db.commit()
+        print(f"Valores insertados correctamente en la tabla {TablaDestino}.")
+    except Exception as e:
+        print(f"Error al insertar valores: {str(e)}")
+        db.rollback()  # Rollback en caso de excepción
 
 
+
+    try:
+        content = request.get_json()
+        gasto = content['gasto']
+        presion = content['presion']
+        vibracion = content['vibracion']
+        # Si no existe, agrega los nuevos valores
+        data['gasto'].append(gasto)
+        data['presion'].append(presion)
+        data['vibracion'].append(vibracion)
+        print(f"Added new data: gasto={gasto}, presion={presion}, vibracion={vibracion}")
+        EnviarAMysql(gasto, presion, vibracion, TablaDestino)
+        return jsonify({'success': True})
+    except Exception as e:
+        print(f"Error receiving data: {str(e)}")
+        return jsonify({'success': False, 'error': str(e)})
        
 
 '''
@@ -81,35 +108,68 @@ else:
     print("No se pudo conectar a la base de datos.")
 
 
-@app.route('/data', methods=['POST'])
-def receive_data():
-    try:
-        content = request.get_json()
-        gasto = content['gasto']
-        presion = content['presion']
-        vibracion = content['vibracion']
-        # Si no existe, agrega los nuevos valores
-        data['gasto'].append(gasto)
-        data['presion'].append(presion)
-        data['vibracion'].append(vibracion)
-        print(f"Added new data: gasto={gasto}, presion={presion}, vibracion={vibracion}")
-        EnviarAMysql(gasto, presion, vibracion)
+@app.route('/data1', methods=['POST'])
+def receive_data1():
+   TablaDestino="JugadaUno"
+   if request.method == 'POST':
+        # Obtener los datos enviados como JSON
+        datos = request.get_json()
+        # Acceder a los valores específicos
+        Movimiento = datos.get("Movimiento")
+        ReyBlanco = datos.get("ReyBlanco")
+        ReyNegro = datos.get("ReyNegro")
+        NumeroDeMovimiento= datos.get("NumeroDeMovimiento")
+        EnviarAMysql(Movimiento, ReyBlanco, ReyNegro,NumeroDeMovimiento, TablaDestino)
         return jsonify({'success': True})
-    except Exception as e:
-        print(f"Error receiving data: {str(e)}")
-        return jsonify({'success': False, 'error': str(e)})
-def EnviarAMysql(gasto, presion, vibracion):
-    try:
-        cursor = db.cursor()
-        query = "INSERT INTO EjemploUno (gasto, presion, vibracion) VALUES (%s, %s, %s)"
-        values = (gasto, presion, vibracion)
-        cursor.execute(query, values)
-        db.commit()
-        print("Valores insertados correctamente en la base de datos.")
-    except Exception as e:
-        print(f"Error al insertar valores: {str(e)}")
-        db.rollback()
-
+@app.route('/data2', methods=['POST'])
+def receive_data2():
+     TablaDestino="JugadaDos"
+     if request.method == 'POST':
+        # Obtener los datos enviados como JSON
+        datos = request.get_json()
+        # Acceder a los valores específicos
+        Movimiento = datos.get("Movimiento")
+        ReyBlanco = datos.get("ReyBlanco")
+        ReyNegro = datos.get("ReyNegro")
+        NumeroDeMovimiento= datos.get("NumeroDeMovimiento")
+        EnviarAMysql(Movimiento, ReyBlanco, ReyNegro,NumeroDeMovimiento, TablaDestino)
+        return jsonify({'success': True})
+   
+@app.route('/data3', methods=['POST'])
+def receive_data3():
+    TablaDestino="JugadaTres"
+    if request.method == 'POST':
+        # Obtener los datos enviados como JSON
+        datos = request.get_json()
+        # Acceder a los valores específicos
+        Movimiento = datos.get("Movimiento")
+        ReyBlanco = datos.get("ReyBlanco")
+        ReyNegro = datos.get("ReyNegro")
+        NumeroDeMovimiento= datos.get("NumeroDeMovimiento")
+        EnviarAMysql(Movimiento, ReyBlanco, ReyNegro,NumeroDeMovimiento, TablaDestino)
+        return jsonify({'success': True})
+   
+@app.route('/data4', methods=['POST'])
+def receive_data4():
+    TablaDestino="JugadaCuatro"
+    if request.method == 'POST':
+        # Obtener los datos enviados como JSON
+        datos = request.get_json()
+        # Acceder a los valores específicos
+        Movimiento = datos.get("Movimiento")
+        ReyBlanco = datos.get("ReyBlanco")
+        ReyNegro = datos.get("ReyNegro")
+        NumeroDeMovimiento= datos.get("NumeroDeMovimiento")
+        EnviarAMysql(Movimiento, ReyBlanco, ReyNegro,NumeroDeMovimiento, TablaDestino)
+        return jsonify({'success': True})
+    
+@app.route('/datadelete1') #esto es para unas pruebas, (en contrución)
+def DeleteData1():
+    cursor = db.cursor(dictionary=True)
+    query = "DELETE  FROM JugadaUno"
+    cursor.execute(query)
+    result = cursor.fetchall() # Esto es obligtorio, consumir los datos, aunque sea vacío
+    return make_response('Tabla Eliminada con Exito', 200)
 @app.route('/get_data')
 def get_data():
     try:
@@ -132,7 +192,7 @@ def get_data():
 def data_page():
     try:
         cursor = db.cursor(dictionary=True)
-        query = "SELECT * FROM EjemploUno"
+        query = "SELECT * FROM JugadaUno"
         cursor.execute(query)
         result = cursor.fetchall()
         return render_template('data.html', data=result)
@@ -141,8 +201,8 @@ def data_page():
         return jsonify({'error': str(e)})
 
 if __name__ == "__main__": #¿Nuestra objeto flask se instanció correctamente?
-    webbrowser.open(url)
+    webbrowser.open(url)   # Abre la pagina
 # Imprime un mensaje de éxito
     print(f"La URL {url} se ha abierto en correctamente")
-    app.run(debug=False, host='0.0.0.0')    # entonces  ejecutar en modo debuggin
+    app.run(debug=False, host='0.0.0.0')    # entonces  ejecutar el servidor
     print(f"Servidor iniciado con exito UwU ")

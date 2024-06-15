@@ -1,26 +1,26 @@
 {% extends './Base.html' %}
 
-{% block title %}Inicio{% endblock %}
+{% block title %}Jugadada{% endblock %}
 {% block styles%}{% endblock %}
 
 
 {% block Bodyy %}  
 
 <div class="TablaFachera">
-    <h1><i style="color: #00A5D6;">Datos de la tabla EjemploUno</i></h1>
+    <h1><i style="color: #00a4d6c6;">Desarrollo de la Jugada</i></h1>
 <table>
     <tr>
-        <th>ID </th>
-        <th>Gasto</th>
-        <th>Presión</th>
-        <th>Vibración</th>
+        <th>Número de Jugada </th>
+        <th>Movimiento</th>
+        <th>Rey Blanco</th>
+        <th>Rey Negro</th>
     </tr>
     {% for row in data %}
         <tr>
-            <td>{{ row['id'] }}</td>
-            <td>{{ row['gasto'] }}</td>
-            <td>{{ row['presion'] }}</td>
-            <td>{{ row['vibracion'] }}</td>
+            <td>{{ row['NumeroDeMovimiento'] }}</td>
+            <td>{{ row['Movimiento'] }}</td>
+            <td>{{ row['ReyBlanco'] }}</td>
+            <td>{{ row['ReyNegro'] }}</td>
         </tr>
 
     {% endfor %} 

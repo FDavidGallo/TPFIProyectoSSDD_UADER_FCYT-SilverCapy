@@ -88,17 +88,16 @@ void setup() {
  */
 
 void loop() {
-    float gasto = 123.45; // Valor simulado de gasto
-    float presion = 67.89; // Valor simulado de presión
-    float vibracion = 12.12; // Valor simulado de vibración
-
+    int NumeroDeMovimiento=12;
     DynamicJsonDocument jsonDoc(200);
-    jsonDoc["gasto"] = gasto;
-    jsonDoc["presion"] = presion;
-    jsonDoc["vibracion"] = vibracion;
+   
+    jsonDoc["Movimiento"] = "PEPE";
+    jsonDoc["ReyBlanco"] = "gasto";
+    jsonDoc["ReyNegro"] = "presion";
+    jsonDoc["NumeroDeMovimiento"] = NumeroDeMovimiento;
 
     String SPayload;
-    String ServerAddress=Direccion;
+    String ServerAddress=Direccion+"1";
     serializeJson(jsonDoc, SPayload);
     EnviarJsonViaHTTPMetodoPost(ServerAddress,SPayload);
     delay(5000); // Espera 5 segundos antes de enviar el siguiente dato

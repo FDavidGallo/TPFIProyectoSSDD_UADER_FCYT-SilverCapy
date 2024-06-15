@@ -1,0 +1,27 @@
+Create database AppMicro;
+USE AppMicro;
+CREATE TABLE JugadaUno (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Movimiento VARCHAR(200),
+    ReyBlanco VARCHAR(200),
+    ReyNegro VARCHAR(200),
+    NumeroDeMovimiento INT );
+CREATE TABLE JugadaDos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Movimiento VARCHAR(200),
+    ReyBlanco VARCHAR(200),
+    ReyNegro VARCHAR(200),
+    NumeroDeMovimiento INT );
+CREATE TABLE JugadaTres (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Movimiento VARCHAR(200),
+    ReyBlanco VARCHAR(200),
+    ReyNegro VARCHAR(200),
+    NumeroDeMovimiento INT );
+    CREATE TABLE JugadaCuatro (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Movimiento VARCHAR(200),
+    ReyBlanco VARCHAR(200),
+    ReyNegro VARCHAR(200),
+    NumeroDeMovimiento INT );
+SELECT * FROM JugadaUno;
